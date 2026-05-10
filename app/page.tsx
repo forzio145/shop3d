@@ -15,9 +15,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-4 md:p-8 bg-neutral-900 text-white">
-      <header className="flex items-center justify-between md:justify-center mb-8 relative">
+      <header className="flex items-center justify-start md:justify-center mb-8 relative">
         <h1 className="text-3xl md:text-4xl font-bold">Shop 3D</h1>
-        {/* Il carrello nel CartDrawer è già fixed, questo header gestisce solo il titolo */}
       </header>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2">
         {products.map((product) => (
