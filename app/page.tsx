@@ -15,12 +15,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-4 md:p-8 bg-neutral-900 text-white">
-      <header className="flex items-center justify-between md:justify-center mb-8 relative">
-        <h1 className="text-3xl md:text-4xl font-bold flex-1 md:flex-none text-left md:text-center">Shop 3D</h1>
-        <div className="md:absolute md:right-0">
+      <header className="flex items-center justify-between mb-8 relative">
+        <h1 className="text-3xl md:text-4xl font-bold flex-1 text-left md:text-center md:absolute md:left-0 md:right-0">Shop 3D</h1>
+        <div className="z-10">
           <CartButton />
         </div>
       </header>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2">
         {products.map((product) => (
           <div 
