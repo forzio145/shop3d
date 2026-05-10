@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from '@/components/Footer';
-import { CartProvider } from '@/context/CartContext';
 import CartDrawer from '@/components/CartDrawer';
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Providers from './providers';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,11 +20,6 @@ export const metadata: Metadata = {
   description: "Marketplace di oggetti stampati in 3D",
 };
 
-const paypalOptions = {
-  clientId: "AR0Dkk2XZVYHok0Spgr-_icJxD5JTWR-SGmQ4QvIGfLwnJCBvTyxTAp44NHg3aXCyD7igGR7nnSwEFqd",
-  currency: "EUR",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,12 +31,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <PayPalScriptProvider options={paypalOptions}>
-          <CartProvider>
-            <CartDrawer />
-            <main className="flex-grow">{children}</main>
-          </CartProvider>
-        </PayPalScriptProvider>
+        <Providers>
+          <CartDrawer />
+          <main className="flex-grow">{children}</main>
+        </Providers>
         <Footer />
       </body>
     </html>
