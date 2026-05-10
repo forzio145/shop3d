@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen p-4 md:p-8 bg-neutral-900 text-white">
       <h1 className="text-4xl font-bold mb-8 text-center">Shop 3D</h1>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-2 p-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2">
         {products.map((product) => (
           <div 
             key={product.id} 
