@@ -24,7 +24,13 @@ export default function Home() {
             onClick={() => setSelectedProduct(product)}
           >
             {product.immagini && product.immagini.length > 0 && (
-              <img src={product.immagini[0]} alt={product.nome} className="w-full h-48 object-cover rounded-md mb-4" />
+              <div className="w-full h-[280px] bg-neutral-700 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={product.immagini[0]} 
+                  alt={product.nome} 
+                  className="w-full h-full object-contain" 
+                />
+              </div>
             )}
             <h2 className="text-xl font-semibold mb-2">{product.nome}</h2>
             <p className="text-neutral-400 mb-4">{product.prezzo.toFixed(2)} €</p>
