@@ -19,26 +19,21 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
         <button onClick={onClose} className="absolute top-4 right-4 text-neutral-400 hover:text-white text-2xl z-10">✕</button>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Colonna Sinistra: Immagine */}
+          {/* Colonna Sinistra */}
           <div className="flex flex-col gap-4">
             {product.immagini && product.immagini.length > 0 && (
               <img src={product.immagini[0]} alt={product.nome} className="w-full h-80 object-cover rounded-xl" />
             )}
-            <div className="bg-neutral-800 p-4 rounded-xl">
-                <p className="text-sm text-neutral-400 mb-1">Dimensioni</p>
-                <p className="text-white font-mono">{product.dimensioni_stampa}</p>
-            </div>
-          </div>
-
-          {/* Colonna Destra: Info */}
-          <div className="flex flex-col">
-            <span className="inline-block bg-neutral-800 text-blue-400 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider w-max">
+            <span className="inline-block bg-neutral-800 text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-max">
                 {product.categoria}
             </span>
-            <h2 className="text-3xl font-bold mb-2 text-white">{product.nome}</h2>
-            <p className="text-3xl text-white font-bold mb-6">{product.prezzo.toFixed(2)} €</p>
-            
-            <div className="text-neutral-400 mb-8 whitespace-pre-line leading-relaxed flex-grow">
+            <p className="text-3xl text-white font-bold">{product.prezzo.toFixed(2)} €</p>
+          </div>
+
+          {/* Colonna Destra */}
+          <div className="flex flex-col">
+            <h2 className="text-3xl font-bold mb-6 text-white">{product.nome}</h2>
+            <div className="text-neutral-300 mb-8 whitespace-pre-wrap leading-relaxed flex-grow">
                 {product.descrizione}
             </div>
             
