@@ -19,6 +19,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         <div>
           <h1 className="text-3xl font-bold mb-4">{product.nome}</h1>
           <p className="text-xl mb-4">{product.prezzo.toFixed(2)} €</p>
+          <p className="mb-2 text-neutral-300">Dimensioni: {product.dimensioni_stampa}</p>
           <p className="mb-6">{product.descrizione}</p>
           <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition">
             Acquista
