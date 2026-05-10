@@ -1,8 +1,15 @@
-import { getProducts } from '@/lib/products';
-import Link from 'next/link';
+'use client';
+import { getProducts, Product } from '@/lib/products';
+import { useCart } from '@/context/CartContext';
+import { useEffect, useState } from 'react';
 
-export default async function Home() {
-  const products = await getProducts();
+export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
 
   return (
     <main className="min-h-screen p-4 md:p-8 bg-neutral-900 text-white">
@@ -15,7 +22,10 @@ export default async function Home() {
             )}
             <h2 className="text-xl font-semibold mb-2">{product.nome}</h2>
             <p className="text-neutral-400 mb-4">{product.prezzo.toFixed(2)} €</p>
-            <button className="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition">
+            <button 
+              onClick={() => addToCart(product)}
+              className="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition"
+            >
               Aggiungi al carrello
             </button>
           </div>

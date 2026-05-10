@@ -29,8 +29,11 @@ export default function RootLayout({
       lang="it"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+import CartDrawer from '@/components/CartDrawer';
+...
       <body className="min-h-full flex flex-col">
         <CartProvider>
+          <CartDrawer />
           <main className="flex-grow">{children}</main>
         </CartProvider>
         <Footer />
