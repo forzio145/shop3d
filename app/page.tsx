@@ -32,9 +32,9 @@ export default function Home() {
                     />
                 )}
             </div>
-            <div className="p-2">
-                <p className="text-sm text-white line-clamp-2 mb-1">{product.nome}</p>
-                <p className="text-sm font-bold text-white">{product.prezzo.toFixed(2)} €</p>
+            <div className="p-2 md:p-3">
+                <p className="text-sm md:text-base text-white line-clamp-2 mb-1">{product.nome}</p>
+                <p className="text-sm md:text-lg font-bold text-white">{product.prezzo.toFixed(2)} €</p>
             </div>
           </div>
         ))}
