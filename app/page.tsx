@@ -16,33 +16,26 @@ export default function Home() {
   return (
     <main className="min-h-screen p-4 md:p-8 bg-neutral-900 text-white">
       <h1 className="text-4xl font-bold mb-8 text-center">Shop 3D</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-2 p-2">
         {products.map((product) => (
           <div 
             key={product.id} 
-            className="bg-neutral-800 p-4 rounded-lg flex flex-col cursor-pointer hover:bg-neutral-700 transition"
+            className="bg-neutral-800 rounded-lg overflow-hidden cursor-pointer hover:bg-neutral-700 transition"
             onClick={() => setSelectedProduct(product)}
           >
-            {product.immagini && product.immagini.length > 0 && (
-              <div className="w-full h-[280px] bg-neutral-700 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                <img 
-                  src={product.immagini[0]} 
-                  alt={product.nome} 
-                  className="w-full h-full object-contain" 
-                />
-              </div>
-            )}
-            <h2 className="text-xl font-semibold mb-2">{product.nome}</h2>
-            <p className="text-neutral-400 mb-4">{product.prezzo.toFixed(2)} €</p>
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                addToCart(product);
-              }}
-              className="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition"
-            >
-              Aggiungi al carrello
-            </button>
+            <div className="aspect-[4/5] w-full overflow-hidden">
+                {product.immagini && product.immagini.length > 0 && (
+                    <img 
+                      src={product.immagini[0]} 
+                      alt={product.nome} 
+                      className="w-full h-full object-cover" 
+                    />
+                )}
+            </div>
+            <div className="p-2">
+                <p className="text-sm text-white line-clamp-2 mb-1">{product.nome}</p>
+                <p className="text-sm font-bold text-white">{product.prezzo.toFixed(2)} €</p>
+            </div>
           </div>
         ))}
       </div>
