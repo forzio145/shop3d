@@ -71,11 +71,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                         {product.descrizione}
                     </div>
 
-                    {/* Banner Tempi di Produzione */}
-                    <div className="mt-auto bg-neutral-800/30 border border-neutral-700/20 rounded-xl p-4 flex items-start gap-3">
-                        <span className="text-neutral-500 text-xs mt-0.5">✧</span>
-                        <p className="text-[11px] md:text-xs text-neutral-400 leading-normal">
-                            <span className="text-neutral-300 font-medium">Artigianato premium:</span> produzione e rifinitura <span className="italic">Glass-Smooth</span> richiedono 3-5 giorni lavorativi prima della spedizione.
+                    {/* Banner di Valore Artigianale */}
+                    <div className="mt-auto py-6 border-y border-neutral-800/50 flex flex-col items-center text-center">
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-amber-600/70 font-bold mb-2">
+                            Garanzia del Produttore
+                        </p>
+                        <p className="text-xs md:text-sm text-neutral-400 font-light leading-relaxed">
+                            Ogni pezzo è rifinito a mano: attendi <span className="text-neutral-100 font-medium">{product.tempi_produzione || '3-5'} giorni</span> per la finitura <span className="italic font-normal">Glass-Smooth</span> prima della spedizione.
                         </p>
                     </div>
                 </div>

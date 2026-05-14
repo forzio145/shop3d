@@ -9,6 +9,7 @@ export interface Product {
   immagini: string[];
   disponibile: boolean;
   dimensioni_stampa: string;
+  tempi_produzione: string;
 }
 
 export async function getProducts(): Promise<Product[]> {
