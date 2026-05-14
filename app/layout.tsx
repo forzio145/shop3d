@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Footer from '@/components/Footer';
 import Manifesto from '@/components/Manifesto';
+import LiveBatchStatus from '@/components/LiveBatchStatus';
 import { CartButton } from '@/components/CartDrawer';
 import Providers from './providers';
 
@@ -40,6 +41,7 @@ export default function RootLayout({
         <Providers>
           <main className="flex-grow">{children}</main>
         </Providers>
+        <LiveBatchStatus />
         <Manifesto />
         <Footer />
       </body>
