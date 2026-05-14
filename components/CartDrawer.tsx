@@ -43,6 +43,24 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                                 </li>
                             ))}
                         </ul>
+
+                        {/* Scarcity Reminder - Ethical Batch Confirmation */}
+                        {groupedItems.length > 0 && (
+                            <div className="bg-amber-900/10 border border-amber-900/20 rounded-xl p-4 my-4">
+                                <div className="flex items-start gap-3">
+                                    <span className="text-amber-600 text-lg">🛡️</span>
+                                    <div className="flex flex-col gap-1">
+                                        <p className="text-xs md:text-sm text-neutral-200 font-semibold leading-snug">
+                                            Stai acquistando un pezzo del <span className="text-amber-500">lotto #{groupedItems[0].id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}</span>.
+                                        </p>
+                                        <p className="text-[10px] md:text-xs text-neutral-400 font-medium">
+                                            Assicurati il tuo pezzo prima che le scorte per questo batch terminino. Il tuo posto nel lotto è garantito solo al completamento dell'ordine.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="pt-4 border-t border-neutral-800 space-y-4">
                             <div className="flex justify-between text-lg font-bold"><span>Totale:</span><span>{total.toFixed(2)} €</span></div>
                             <PayPalButtons
