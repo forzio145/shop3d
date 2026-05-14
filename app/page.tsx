@@ -1,6 +1,5 @@
 'use client';
 import { getProducts, Product } from '@/lib/products';
-import { useCart } from '@/context/CartContext';
 import { useEffect, useState } from 'react';
 import ProductModal from '@/components/ProductModal';
 import { CartButton } from '@/components/CartDrawer';
@@ -22,7 +21,28 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 pt-4">
+      <section className="px-4 py-12 md:py-24 flex flex-col items-center text-center max-w-5xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs md:text-sm font-medium mb-6">
+          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Produzione in piccoli lotti — ogni pezzo è stampato su ordinazione
+        </div>
+        <h2 className="text-4xl md:text-7xl font-extrabold mb-6 tracking-tight">
+          Design che rispetta <br className="hidden md:block" /> 
+          <span className="text-neutral-500 italic">il futuro.</span>
+        </h2>
+        <p className="text-neutral-400 text-lg md:text-xl mb-10 max-w-2xl">
+          Produciamo in serie limitate. Nessun magazzino, nessuno spreco. 
+          Ogni oggetto è realizzato con cura solo quando lo desideri.
+        </p>
+        <a 
+          href="#prodotti" 
+          className="bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform duration-200"
+        >
+          Esplora il catalogo
+        </a>
+      </section>
+
+      <div id="prodotti" className="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 pt-4">
 
         {products.map((product) => (
           <div 
