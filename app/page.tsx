@@ -22,10 +22,6 @@ export default function Home() {
       </header>
 
       <section className="px-4 py-12 md:py-24 flex flex-col items-center text-center max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs md:text-sm font-medium mb-6">
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          Produzione in piccoli lotti — ogni pezzo è stampato su ordinazione
-        </div>
         <h2 className="text-4xl md:text-7xl font-extrabold mb-6 tracking-tight">
           Design che rispetta <br className="hidden md:block" /> 
           <span className="text-neutral-500 italic">il futuro.</span>
