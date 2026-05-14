@@ -54,7 +54,7 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                                             Stai acquistando un pezzo del <span className="text-amber-500">lotto #{groupedItems[0].id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}</span>.
                                         </p>
                                         <p className="text-[10px] md:text-xs text-neutral-400 font-medium">
-                                            Assicurati il tuo pezzo prima che le scorte per questo batch terminino. Il tuo posto nel lotto è garantito solo al completamento dell'ordine.
+                                            Assicurati il tuo pezzo prima che le scorte per questo batch terminino. Il tuo posto nel lotto è garantito solo al completamento dell&apos;ordine.
                                         </p>
                                     </div>
                                 </div>
