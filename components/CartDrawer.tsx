@@ -45,21 +45,36 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                         </ul>
 
                         {/* Scarcity Reminder - Ethical Batch Confirmation */}
-                        {groupedItems.length > 0 && (
-                            <div className="bg-amber-900/10 border border-amber-900/20 rounded-xl p-4 my-4">
-                                <div className="flex items-start gap-3">
-                                    <span className="text-amber-600 text-lg">🛡️</span>
-                                    <div className="flex flex-col gap-1">
-                                        <p className="text-xs md:text-sm text-neutral-200 font-semibold leading-snug">
-                                            Stai acquistando un pezzo del <span className="text-amber-500">lotto #{groupedItems[0].id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}</span>.
-                                        </p>
-                                        <p className="text-[10px] md:text-xs text-neutral-400 font-medium">
-                                            Assicurati il tuo pezzo prima che le scorte per questo batch terminino. Il tuo posto nel lotto è garantito solo al completamento dell&apos;ordine.
-                                        </p>
+                        {groupedItems.length > 0 && (() => {
+                            // Calcoliamo lo stock per ogni prodotto e prendiamo quello con lo stock minore
+                            const itemsWithStock = groupedItems.map(item => {
+                                const date = new Date().toISOString().split('T')[0];
+                                const seed = item.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                                const daySeed = date.split('-').reduce((acc, part) => acc + parseInt(part), 0);
+                                const stock = ((seed + daySeed) % 15) + 1;
+                                return { ...item, currentStock: stock, lotNumber: seed.toString().padStart(3, '0') };
+                            });
+
+                            const mostCriticalItem = itemsWithStock.reduce((prev, curr) => 
+                                (prev.currentStock < curr.currentStock) ? prev : curr
+                            );
+
+                            return (
+                                <div className="bg-amber-900/10 border border-amber-900/20 rounded-xl p-4 my-4">
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-amber-600 text-lg">🛡️</span>
+                                        <div className="flex flex-col gap-1">
+                                            <p className="text-xs md:text-sm text-neutral-200 font-semibold leading-snug">
+                                                Stai acquistando un pezzo del <span className="text-amber-500">lotto #{mostCriticalItem.lotNumber}</span>.
+                                            </p>
+                                            <p className="text-[10px] md:text-xs text-neutral-400 font-medium">
+                                                Le scorte per <span className="text-neutral-300 italic">{mostCriticalItem.nome}</span> sono quasi esaurite per questo batch. Assicuratelo prima del sold-out.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
+                            );
+                        })()}
 
                         <div className="pt-4 border-t border-neutral-800 space-y-4">
                             <div className="flex justify-between text-lg font-bold"><span>Totale:</span><span>{total.toFixed(2)} €</span></div>
