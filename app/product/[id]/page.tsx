@@ -17,13 +17,31 @@ export default async function ProductPage({ params }: { params: { id: string } }
           )}
         </div>
         <div>
-          <h1 className="text-3xl font-bold mb-4">{product.nome}</h1>
-          <p className="text-xl mb-4">{product.prezzo.toFixed(2)} €</p>
-          <p className="mb-2 text-neutral-300">Dimensioni: {product.dimensioni_stampa}</p>
-          <p className="mb-6">{product.descrizione}</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition">
-            Acquista
-          </button>
+          <h1 className="text-3xl md:text-4xl font-bold mb-1">{product.nome}</h1>
+          
+          {/* Lotto di produzione dinamico */}
+          <p className="text-xs md:text-sm text-neutral-500 font-medium mb-4 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+            Lotto di produzione corrente: #{product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}
+          </p>
+
+          <p className="text-2xl font-bold mb-6 text-white">{product.prezzo.toFixed(2)} €</p>
+          <p className="mb-2 text-neutral-400 text-sm">Dimensioni: {product.dimensioni_stampa}</p>
+          <div className="mb-8 text-neutral-300 leading-relaxed">{product.descrizione}</div>
+          
+          <div className="flex flex-col gap-4">
+            <button className="w-full md:w-max bg-white text-black py-4 px-10 rounded-full font-bold hover:scale-[1.02] transition active:scale-[0.98]">
+              Acquista ora
+            </button>
+
+            {/* Banner Tempi di Produzione */}
+            <div className="bg-neutral-800/50 border border-neutral-700/30 rounded-2xl p-4 flex items-start gap-3">
+              <span className="text-neutral-400 mt-0.5">✧</span>
+              <p className="text-xs md:text-sm text-neutral-400 leading-snug">
+                <span className="text-neutral-200 font-medium">Artigianato premium:</span> produzione e rifinitura <span className="italic">Glass-Smooth</span> richiedono 3-5 giorni lavorativi prima della spedizione.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </main>

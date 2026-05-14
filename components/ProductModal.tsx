@@ -55,13 +55,28 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
                 {/* Colonna Destra */}
                 <div className="flex flex-col">
-                    <h2 className="text-2xl font-bold mb-2 text-white">{product.nome}</h2>
-                    <span className="inline-block bg-neutral-800 text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-max mb-3">
+                    <h2 className="text-2xl font-bold mb-1 text-white">{product.nome}</h2>
+                    
+                    {/* Lotto di produzione dinamico */}
+                    <p className="text-[10px] md:text-xs text-neutral-500 font-medium mb-3 flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-neutral-600"></span>
+                        Lotto di produzione corrente: #{product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}
+                    </p>
+
+                    <span className="inline-block bg-neutral-800 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider w-max mb-4">
                         {product.categoria}
                     </span>
                     <p className="text-2xl text-white font-bold mb-6">{product.prezzo.toFixed(2)} €</p>
-                    <div className="text-neutral-300 whitespace-pre-wrap leading-relaxed">
+                    <div className="text-neutral-300 whitespace-pre-wrap leading-relaxed mb-8">
                         {product.descrizione}
+                    </div>
+
+                    {/* Banner Tempi di Produzione */}
+                    <div className="mt-auto bg-neutral-800/30 border border-neutral-700/20 rounded-xl p-4 flex items-start gap-3">
+                        <span className="text-neutral-500 text-xs mt-0.5">✧</span>
+                        <p className="text-[11px] md:text-xs text-neutral-400 leading-normal">
+                            <span className="text-neutral-300 font-medium">Artigianato premium:</span> produzione e rifinitura <span className="italic">Glass-Smooth</span> richiedono 3-5 giorni lavorativi prima della spedizione.
+                        </p>
                     </div>
                 </div>
             </div>
