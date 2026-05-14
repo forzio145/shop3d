@@ -1,12 +1,10 @@
 export default function Manifesto() {
   return (
-    <section className="bg-neutral-900 border-t border-neutral-800 py-20 px-4">
+    <section className="bg-neutral-900 border-t border-neutral-800 py-24 px-4">
       <div className="max-w-3xl mx-auto text-center">
-        {/* Icona minimale raffinata - Simbolo di precisione/cerchio */}
-        <div className="flex justify-center mb-8">
-          <div className="w-12 h-12 rounded-full border border-neutral-700 flex items-center justify-center">
-            <div className="w-1 h-1 bg-neutral-400 rounded-full"></div>
-          </div>
+        {/* Separatore tipografico elegante in stile Playfair */}
+        <div className="flex justify-center mb-10 text-neutral-600">
+          <span className="text-2xl italic" style={{ fontFamily: 'var(--font-playfair)' }}>❦</span>
         </div>
 
         <h2 className="font-serif text-3xl md:text-5xl text-neutral-100 mb-8 italic tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
