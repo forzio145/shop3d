@@ -60,7 +60,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                     {/* Lotto di produzione dinamico */}
                     <p className="text-[10px] md:text-xs text-neutral-500 font-medium mb-3 flex items-center gap-1.5">
                         <span className="w-1 h-1 rounded-full bg-neutral-600"></span>
-                        Lotto di produzione corrente: #{product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}
+                        Lotto di produzione corrente: #{(() => {
+                            const dateNow = new Date();
+                            const year = dateNow.getFullYear() % 100;
+                            const week = Math.floor((dateNow.getTime() - new Date(dateNow.getFullYear(), 0, 1).getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
+                            const seed = product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 100;
+                            return `${year}${week.toString().padStart(2, '0')}.${seed.toString().padStart(2, '0')}`;
+                        })()}
                     </p>
 
                     <span className="inline-block bg-neutral-800 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider w-max mb-4">

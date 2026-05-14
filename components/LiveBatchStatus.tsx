@@ -17,7 +17,10 @@ export default function LiveBatchStatus() {
       const giornoSettimana = new Date().getDay();
       
       // Il lotto cambia ogni settimana (simulato)
-      const lottoBase = 42 + Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 7)) % 100;
+      const dateNow = new Date();
+      const year = dateNow.getFullYear() % 100; // Es: 26 per il 2026
+      const week = Math.floor((dateNow.getTime() - new Date(dateNow.getFullYear(), 0, 1).getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
+      const lottoBase = `${year}${week.toString().padStart(2, '0')}`; // Risultato tipo 2619
       
       // Il progresso del pezzo dipende dall'ora del giorno (lavoro dalle 08:00 alle 20:00)
       let pezzo = 0;

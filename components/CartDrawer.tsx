@@ -65,7 +65,13 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                                         <span className="text-amber-600 text-lg">🛡️</span>
                                         <div className="flex flex-col gap-1">
                                             <p className="text-xs md:text-sm text-neutral-200 font-semibold leading-snug">
-                                                Stai acquistando un pezzo del <span className="text-amber-500">lotto #{mostCriticalItem.lotNumber}</span>.
+                                                Stai acquistando un pezzo del <span className="text-amber-500">lotto #{(() => {
+                                                    const dateNow = new Date();
+                                                    const year = dateNow.getFullYear() % 100;
+                                                    const week = Math.floor((dateNow.getTime() - new Date(dateNow.getFullYear(), 0, 1).getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
+                                                    const seed = mostCriticalItem.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 100;
+                                                    return `${year}${week.toString().padStart(2, '0')}.${seed.toString().padStart(2, '0')}`;
+                                                })()}</span>.
                                             </p>
                                             <p className="text-[10px] md:text-xs text-neutral-400 font-medium">
                                                 Le scorte per <span className="text-neutral-300 italic">{mostCriticalItem.nome}</span> sono quasi esaurite per questo batch. Assicuratelo prima del sold-out.

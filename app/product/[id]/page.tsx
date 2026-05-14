@@ -22,7 +22,13 @@ export default async function ProductPage({ params }: { params: { id: string } }
           {/* Lotto di produzione dinamico */}
           <p className="text-xs md:text-sm text-neutral-500 font-medium mb-4 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-            Lotto di produzione corrente: #{product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0).toString().padStart(3, '0')}
+            Lotto di produzione corrente: #{(() => {
+              const dateNow = new Date();
+              const year = dateNow.getFullYear() % 100;
+              const week = Math.floor((dateNow.getTime() - new Date(dateNow.getFullYear(), 0, 1).getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1;
+              const seed = product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 100;
+              return `${year}${week.toString().padStart(2, '0')}.${seed.toString().padStart(2, '0')}`;
+            })()}
           </p>
 
           <p className="text-2xl font-bold mb-6 text-white">{product.prezzo.toFixed(2)} €</p>
