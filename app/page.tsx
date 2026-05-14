@@ -57,7 +57,51 @@ export default function Home() {
             </div>
             <div className="p-2 md:p-3">
                 <p className="text-sm md:text-lg text-white line-clamp-2 mb-1">{product.nome}</p>
-                <p className="text-sm md:text-xl font-bold text-white">{product.prezzo.toFixed(2)} €</p>
+                <div className="flex flex-col gap-1">
+                  <p className="text-sm md:text-xl font-bold text-white">{product.prezzo.toFixed(2)} €</p>
+                  
+                  {/* Ethical Scarcity Counter */}
+                  {(() => {
+                    // Logica deterministica: lo stock cambia ogni giorno basandosi sull'ID
+                    const date = new Date().toISOString().split('T')[0];
+                    const seed = product.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const daySeed = date.split('-').reduce((acc, part) => acc + parseInt(part), 0);
+                    
+                    // Simuliamo un lotto che parte da 15 e cala in base al giorno
+                    // (seed + daySeed) % 15 + 1 assicura un numero tra 1 e 15 coerente per tutto il giorno
+                    const stock = ((seed + daySeed) % 15) + 1;
+                    
+                    if (stock <= 2) {
+                      return (
+                        <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-red-400">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></span>
+                          {stock === 1 ? 'Ultimo pezzo disponibile' : `Ultimi ${stock} pezzi disponibili`}
+                        </div>
+                      );
+                    } else if (stock <= 5) {
+                      return (
+                        <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-orange-400">
+                          <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                          Solo {stock} disponibili in questo lotto
+                        </div>
+                      );
+                    } else if (stock <= 10) {
+                      return (
+                        <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-yellow-400">
+                          <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                          Lotto in esaurimento — {stock} rimasti
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-emerald-400">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                          Disponibile — lotto corrente
+                        </div>
+                      );
+                    }
+                  })()}
+                </div>
             </div>
           </div>
         ))}
